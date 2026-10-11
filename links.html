@@ -1,0 +1,18 @@
+---
+layout: default
+title: 相關連結
+permalink: /links/
+---
+<div class="container page">
+  <header class="page-header"><h1>相關連結</h1><p class="page-subtitle">合作醫院、主管機關與專業學會</p></header>
+  {% for g in site.data.links.groups %}
+  <section class="link-group">
+    <h2>{{ g.name }}</h2>
+    <ul class="link-list">
+      {% for l in g.links %}
+      <li><a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.title }}<span class="ext">↗</span></a>{% if l.note %}<small>{{ l.note }}</small>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</div>

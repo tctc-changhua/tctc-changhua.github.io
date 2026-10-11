@@ -1,0 +1,27 @@
+groups:
+  - name: 秀傳醫療體系
+    links:
+      - title: 秀傳醫療體系（總站）
+        url: https://www.show.org.tw/
+      - title: 彰化秀傳紀念醫院
+        url: https://www.scmh.org.tw/
+      - title: 彰濱秀傳紀念醫院
+        url: https://www.cbshow.org.tw/changbin/
+      - title: 竹山秀傳醫院
+        url: https://www.csshow.org.tw/
+      - title: 台南市立醫院（秀傳經營）
+        url: https://www.tmh.org.tw/
+      - title: 高雄秀傳紀念醫院
+        url: https://www.ksch.org.tw/
+      - title: 高雄市立岡山醫院（秀傳經營）
+        url: https://www.ks.org.tw/
+  - name: 政府機關
+    links:
+      - title: 衛生福利部 醫事司
+        url: https://dep.mohw.gov.tw/DOMA/mp-106.html
+  - name: 專業學會
+    links:
+      - title: 台灣急診醫學會
+        url: https://www.sem.org.tw/
+      - title: 台灣急診醫學會 課程列表
+        url: https://www.sem.org.tw/Activity/A/Index

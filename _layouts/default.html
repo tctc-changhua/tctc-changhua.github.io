@@ -31,6 +31,7 @@
       <a href="{{ '/chairman/' | relative_url }}" {% if page.url contains "/chairman/" %}class="active"{% endif %}>理事長的話</a>
       <a href="{{ '/activities/' | relative_url }}" {% if page.url contains "/activities/" %}class="active"{% endif %}>活動紀錄</a>
       <a href="{{ '/news/' | relative_url }}" {% if page.url contains "/news/" %}class="active"{% endif %}>最新消息</a>
+      <a href="{{ '/links/' | relative_url }}" {% if page.url contains "/links/" %}class="active"{% endif %}>相關連結</a>
     </nav>
   </div>
 </header>
@@ -53,6 +54,11 @@
       </div>
     </div>
     <div class="footer-meta">
+      <div class="footer-ext">
+        <div class="footer-title">相關連結</div>
+        {% for g in site.data.links.groups %}{% for l in g.links limit: 3 %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.title }}</a>{% endfor %}{% endfor %}
+        <a href="{{ '/links/' | relative_url }}">更多 ›</a>
+      </div>
       <div>© {{ site.time | date: "%Y" }} {{ site.title }}</div>
       <a class="admin-link" href="https://app.pagescms.org/tctc-changhua/tctc-changhua.github.io" rel="nofollow">管理者登入</a>
     </div>

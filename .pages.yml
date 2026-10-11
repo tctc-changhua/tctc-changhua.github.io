@@ -147,5 +147,33 @@ content:
         label: LINE 官方帳號網址
         type: string
 
+  - name: links
+    label: 相關連結
+    type: file
+    path: _data/links.yml
+    fields:
+      - name: groups
+        label: 連結分組
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: 分組名稱
+            type: string
+          - name: links
+            label: 連結
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: 名稱
+                type: string
+              - name: url
+                label: 網址
+                type: string
+              - name: note
+                label: 備註（選填）
+                type: string
+
 settings:
   merge: true
