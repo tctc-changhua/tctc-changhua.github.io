@@ -123,6 +123,18 @@ content:
         label: 內容
         type: rich-text
 
+  - name: research
+    label: 研究項目
+    type: file
+    path: research.md
+    fields:
+      - name: title
+        label: 標題
+        type: string
+      - name: body
+        label: 內容
+        type: rich-text
+
   - name: siteinfo
     label: 網站設定（聯絡資訊）
     type: file
