@@ -1,0 +1,42 @@
+title: 彰化縣緊急救護訓練協會
+tagline: Changhua County Emergency Medical Training Association
+description: 推廣全民緊急救護教育、培育專業救護技術人員、發展災難醫療應變訓練。
+url: "https://tctc-changhua.github.io"
+baseurl: ""
+lang: zh-Hant
+timezone: Asia/Taipei
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+permalink: /news/:year/:month/:day/:title/
+
+collections:
+  activities:
+    output: true
+    permalink: /activities/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: activities
+    values:
+      layout: activity
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: page
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .pages.yml
+  - vendor
+  - node_modules

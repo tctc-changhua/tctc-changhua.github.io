@@ -1,0 +1,71 @@
+---
+layout: default
+title: 首頁
+---
+{% assign acts = site.activities | sort: "date" | reverse %}
+{% assign posts = site.posts | sort: "date" | reverse %}
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-kicker">Changhua County Emergency Medical Training Association</p>
+    <h1>推廣全民緊急救護教育<br>培育專業救護與災難醫療人才</h1>
+    <p class="hero-lead">本會由急診、外科、護理與救護專業人員組成，深入社區、學校、機構與偏遠地區，推動 CPR+AED、創傷急救、災難醫療應變與山野救援訓練。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ '/activities/' | relative_url }}">看活動紀錄</a>
+      <a class="btn btn-ghost" href="{{ '/about/' | relative_url }}">認識協會</a>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">❤️</div>
+      <h3>全民急救教育</h3>
+      <p>推動大眾 CPR+AED 普及教育，提升社區心臟驟停存活率；與學校合作將急救與防災納入校園安全教育。</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🩺</div>
+      <h3>專業救護訓練</h3>
+      <p>舉辦美國心臟協會（AHA）課程、緊急外傷與超音波訓練，建立醫護與救護技術人員的持續進修制度。</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⛑️</div>
+      <h3>災難醫療應變</h3>
+      <p>發展災難醫療演練與山野救援訓練體系，結合醫院、消防、衛生單位，強化大型災害整備與救援能力。</p>
+    </div>
+  </div>
+</section>
+
+{% if acts.size > 0 %}
+<section class="container section">
+  <div class="section-head">
+    <h2>近期活動</h2>
+    <a href="{{ '/activities/' | relative_url }}">全部活動 ›</a>
+  </div>
+  <div class="card-grid">
+    {% for a in acts limit: 6 %}
+    <a class="card" href="{{ a.url | relative_url }}">
+      <div class="card-img">{% if a.images and a.images.size > 0 %}<img src="{{ a.images[0] | relative_url }}" alt="" loading="lazy">{% endif %}</div>
+      <div class="card-body">
+        <time>{{ a.date | date: '%Y.%m.%d' }}</time>
+        <h3>{{ a.title }}</h3>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if posts.size > 0 %}
+<section class="container section">
+  <div class="section-head">
+    <h2>最新消息</h2>
+    <a href="{{ '/news/' | relative_url }}">全部消息 ›</a>
+  </div>
+  <ul class="news-list">
+    {% for p in posts limit: 5 %}
+    <li><time>{{ p.date | date: '%Y.%m.%d' }}</time><a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% if p.pinned %}<span class="chip chip-red">置頂</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

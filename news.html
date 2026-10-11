@@ -1,0 +1,20 @@
+---
+layout: default
+title: 最新消息
+permalink: /news/
+---
+{% assign posts = site.posts | sort: "date" | reverse %}
+{% assign pinned = posts | where: "pinned", true %}
+{% assign normal = posts | where_exp: "p", "p.pinned != true" %}
+<div class="container page">
+  <header class="page-header"><h1>最新消息</h1></header>
+  {% if posts.size == 0 %}<p class="empty">目前沒有公告。</p>{% endif %}
+  <ul class="news-list news-list-lg">
+    {% for p in pinned %}
+    <li><time>{{ p.date | date: '%Y.%m.%d' }}</time><a href="{{ p.url | relative_url }}">{{ p.title }}</a><span class="chip chip-red">置頂</span></li>
+    {% endfor %}
+    {% for p in normal %}
+    <li><time>{{ p.date | date: '%Y.%m.%d' }}</time><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

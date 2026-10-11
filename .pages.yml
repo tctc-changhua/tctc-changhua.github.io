@@ -1,0 +1,151 @@
+# Pages CMS 設定檔 — https://app.pagescms.org 讀取此檔後產生管理後台
+# 修改此檔會改變後台欄位；一般內容更新不需要動它。
+
+media:
+  - name: activities
+    label: 活動照片
+    input: assets/img/activities
+    output: /assets/img/activities
+    categories: [image]
+    rename: safe
+  - name: news
+    label: 公告圖片與附件
+    input: assets/uploads
+    output: /assets/uploads
+    categories: [image, document]
+    rename: safe
+
+content:
+  - name: activities
+    label: 活動紀錄
+    description: 每一筆活動 = 一個日期 + 標題 + 數張照片。新增後約 1–2 分鐘網站會自動更新。
+    type: collection
+    path: _activities
+    filename: "{date}-{title}.md"
+    view:
+      fields: [title, date, category]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 活動名稱
+        type: string
+        required: true
+      - name: date
+        label: 活動日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: 類別
+        type: select
+        default: 訓練課程
+        options:
+          values: [訓練課程, 災難演練, 社區推廣, 研討交流, 協會活動, 其他]
+      - name: location
+        label: 地點（選填）
+        type: string
+      - name: images
+        label: 活動照片
+        type: image
+        options:
+          media: activities
+          multiple: true
+          extensions: [jpg, jpeg, png, webp]
+      - name: body
+        label: 活動說明（選填）
+        type: rich-text
+
+  - name: posts
+    label: 最新消息
+    description: 公告、課程報名、活動預告。
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{title}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 標題
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: pinned
+        label: 置頂
+        type: boolean
+        default: false
+      - name: attachment
+        label: 附件（PDF 等，選填）
+        type: file
+        options:
+          media: news
+      - name: body
+        label: 內容
+        type: rich-text
+        options:
+          media: news
+
+  - name: chairman
+    label: 理事長的話
+    type: file
+    path: chairman.md
+    fields:
+      - name: title
+        label: 標題
+        type: string
+      - name: body
+        label: 內容
+        type: rich-text
+
+  - name: about
+    label: 協會簡介
+    type: file
+    path: about.md
+    fields:
+      - name: title
+        label: 標題
+        type: string
+      - name: body
+        label: 內容
+        type: rich-text
+
+  - name: siteinfo
+    label: 網站設定（聯絡資訊）
+    type: file
+    path: _data/info.yml
+    fields:
+      - name: chairman
+        label: 理事長
+        type: string
+      - name: email
+        label: 聯絡 Email
+        type: string
+      - name: phone
+        label: 聯絡電話
+        type: string
+      - name: address
+        label: 地址
+        type: string
+      - name: facebook
+        label: Facebook 網址
+        type: string
+      - name: line
+        label: LINE 官方帳號網址
+        type: string
+
+settings:
+  merge: true

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="container page activity">
+  <nav class="crumbs"><a href="{{ '/activities/' | relative_url }}">活動紀錄</a> › <a href="{{ '/activities/' | relative_url }}#y{{ page.date | date: '%Y' }}">{{ page.date | date: '%Y' }} 年</a></nav>
+  <header class="page-header">
+    <div class="meta">
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y 年 %-m 月 %-d 日' }}</time>
+      {% if page.category %}<span class="chip">{{ page.category }}</span>{% endif %}
+      {% if page.location %}<span class="loc">📍 {{ page.location }}</span>{% endif %}
+    </div>
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  {% if content and content != "" %}<div class="prose">{{ content }}</div>{% endif %}
+
+  {% if page.images and page.images.size > 0 %}
+  <div class="gallery" data-gallery>
+    {% for img in page.images %}
+    <a class="gallery-item" href="{{ img | relative_url }}" data-index="{{ forloop.index0 }}">
+      <img src="{{ img | relative_url }}" alt="{{ page.title }} 照片 {{ forloop.index }}" loading="lazy">
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% assign sorted = site.activities | sort: "date" %}
+  {% assign prev = nil %}{% assign next = nil %}
+  {% for a in sorted %}
+    {% if a.url == page.url %}
+      {% unless forloop.first %}{% assign previ = forloop.index0 | minus: 1 %}{% assign prev = sorted[previ] %}{% endunless %}
+      {% unless forloop.last %}{% assign nexti = forloop.index0 | plus: 1 %}{% assign next = sorted[nexti] %}{% endunless %}
+    {% endif %}
+  {% endfor %}
+  <nav class="pager">
+    {% if prev %}<a class="pager-prev" href="{{ prev.url | relative_url }}">‹ {{ prev.title }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="pager-next" href="{{ next.url | relative_url }}">{{ next.title }} ›</a>{% endif %}
+  </nav>
+</article>
